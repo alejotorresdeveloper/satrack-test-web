@@ -99,7 +99,6 @@ export const useTableroStore = create<TableroState>((set) => ({
     set({ categoriaSeleccionada: categoriaId });
   },
   deleteTarea: async (tareaId, columnaId) => {
-    debugger;
     await deleteTarea(tareaId);
     set((state) => {
       const nuevasColumnas = new Map(state.tablero.columnas);
