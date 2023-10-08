@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useTableroStore } from "@/store/TableroStore";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
-import { Columna } from "./Columna";
+import * as Columna from "./Columna";
 import { start } from "repl";
 
 export const Tablero = () => {
@@ -21,14 +21,6 @@ export const Tablero = () => {
     const { source, destination, type } = result;
 
     if (!destination) return;
-
-    if (type === "column") {
-      const nuevaColumna = Array.from(tablero.columnas.entries());
-      const [columnaMovida] = nuevaColumna.splice(source.index, 1);
-      nuevaColumna.splice(destination.index, 0, columnaMovida);
-      const columnasReorganizadas = new Map(nuevaColumna);
-      setTablero({ ...tablero, columnas: columnasReorganizadas });
-    }
 
     const columnas = Array.from(tablero.columnas);
     const indiceInicial = columnas[Number(source.droppableId)];
@@ -97,8 +89,8 @@ export const Tablero = () => {
             ref={provided.innerRef}
           >
             {Array.from(tablero.columnas.entries()).map(
-              ([id, columna], index) => (
-                <Columna
+                ([id, columna]: [string, Columna], index: number) => (
+                <Columna.Columna
                   key={id}
                   id={id}
                   tareas={columna.tareas}

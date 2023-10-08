@@ -80,15 +80,17 @@ export const Columna: FC<ColumnaProps> = ({ id, tareas, index }) => {
                     );
                   })}
                   {provided.placeholder}
-                  <div className="flex items-end justify-end p-2">
-                    <button
-                      type="button"
-                      onClick={openModal}
-                      className=" text-green-500 hover:text-green-600"
-                    >
-                      <PlusCircleIcon className="h-10 w-10" />
-                    </button>
-                  </div>
+                  {id === "Nueva" && (
+                    <div className="flex items-end justify-end p-2">
+                      <button
+                        type="button"
+                        onClick={openModal}
+                        className=" text-green-500 hover:text-green-600"
+                      >
+                        <PlusCircleIcon className="h-10 w-10" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
